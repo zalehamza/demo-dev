@@ -69,7 +69,7 @@ pipeline {
                      '''
                 sh "git add deployment.yaml"
                 sh "git commit -m Update deployment.yaml"
-                sh 'git push https://${GITHUB_TOKEN}@github.com/username/demo-devops.git'
+                sh 'git push https://${GITHUB_TOKEN}@github.com/zalehamza/demo-devops.git'
             }
 
 
