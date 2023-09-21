@@ -59,7 +59,7 @@ pipeline {
 
             dir('demo-devops') {
                 sh '''
-                         sed -i "s|IMAGE_NAME_PLACEHOLDER|IMAGE_NAME|g" deployment.yaml
+                         sed -i "s|IMAGE_NAME_PLACEHOLDER|$IMAGE_NAME|g" deployment.yaml
                         
                      '''
                 sh '''
