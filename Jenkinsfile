@@ -67,6 +67,21 @@ pipeline {
                         git config --global user.name "zalehamza"
                         
                      '''
+
+                def changes = sh(script: "git diff deployment.yaml", returnStatus: true)
+            
+                if (changes == 0) { // Si des modifications sont détectées
+                    sh """
+                        git add $DEPLOYMENT_FILE
+                        git commit -m "Update image to $IMAGE_NAME"
+                        git push
+                    """
+                } else {
+                    echo "No changes in deployment.yaml detected. Skipping commit and push."
+                }
+
+
+
                 sh "git add deployment.yaml"
                 sh "git commit -m Upde deployment.yaml"
                 sh 'git push https://${GITHUB_TOKEN}@github.com/zalehamza/demo-devops.git'
