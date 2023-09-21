@@ -40,6 +40,7 @@ pipeline {
                     sh "rm -rf demo-devops"
                     sh 'git clone https://github.com/zalehamza/demo-devops.git'
                     sh "cd demo-devops"
+                    sh "ls -la"
 
                     // Déploiement de l'application sur Kubernetes
                     sh '''
