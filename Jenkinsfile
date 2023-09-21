@@ -39,7 +39,7 @@ pipeline {
 
                     // Déploiement de l'application sur Kubernetes
                     sh '''
-                        sed -i "s|IMAGE_NAME_PLACEHOLDER|IMAGE_NAME|g" my-k8s-deployment.yaml
+                        sed -i "s|IMAGE_NAME_PLACEHOLDER|IMAGE_NAME|g" deployment.yaml
                         kubectl apply -f my-k8s-deployment.yaml
                     '''
                     
