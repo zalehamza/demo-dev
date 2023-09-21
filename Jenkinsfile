@@ -39,8 +39,9 @@ pipeline {
 
                     // Déploiement de l'application sur Kubernetes
                     sh '''
+                        git clone https://github.com/zalehamza/demo-devops.git
                         sed -i "s|IMAGE_NAME_PLACEHOLDER|IMAGE_NAME|g" deployment.yaml
-                        kubectl apply -f my-k8s-deployment.yaml
+                        
                     '''
                     
                                         // Remplacer le placeholder par le vrai nom de l'image
