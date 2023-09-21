@@ -55,7 +55,10 @@ pipeline {
             // '''
 
             dir('demo-devops') {
-                sh 'sed -i "s|IMAGE_NAME_PLACEHOLDER|'${IMAGE_NAME}'|g" deployment.yaml'
+                sh '''
+                         sed -i "s|IMAGE_NAME_PLACEHOLDER|IMAGE_NAME|g" deployment.yaml
+                        
+                     '''
                 sh "git add deployment.yaml"
                 sh "git commit -m 'Update deployment.yaml"
                 sh "git push"
