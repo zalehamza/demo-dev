@@ -46,7 +46,7 @@ pipeline {
                     '''
 
                     sh '''
-                git add path/to/deployment.yaml
+                git add deployment.yaml
                 git commit -m "Update image to" 
                 git push
             '''
