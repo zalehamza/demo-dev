@@ -38,6 +38,7 @@ pipeline {
                 script {
 
                     sh 'git clone https://github.com/zalehamza/demo-devops.git'
+                    sh "cd demo-devops"
 
                     // Déploiement de l'application sur Kubernetes
                     sh '''
@@ -45,11 +46,13 @@ pipeline {
                         
                     '''
 
-                    sh '''
+                              sh '''
                 git add deployment.yaml
                 git commit -m "Update image to" 
                 git push
             '''
+
+          
                     
                                         // Remplacer le placeholder par le vrai nom de l'image
                 }
