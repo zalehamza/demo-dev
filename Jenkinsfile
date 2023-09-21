@@ -49,7 +49,7 @@ pipeline {
             //         '''
 
             //                   sh '''
-            //     git add demo-devops/deployment.yaml
+                // git add demo-devops/deployment.yaml
             //     git commit -m "Update deployment.yaml"
             //     git push
             // '''
@@ -60,7 +60,7 @@ pipeline {
                         
                      '''
                 sh "git add deployment.yaml"
-                sh "git commit -m 'Update deployment.yaml"
+                sh "git commit -m Update deployment.yaml"
                 sh "git push"
             }
 
