@@ -7,6 +7,7 @@ pipeline {
         DOCKERHUB_PASSWORD = 'leil@2023'
         IMAGE_NAME = 'demo-app:latest'
         IMAGE_TAG = "1.0.0"
+        GITHUB_TOKEN = credentials('zalehamza')
     }
 
     stages {
@@ -53,6 +54,8 @@ pipeline {
             //     git commit -m "Update deployment.yaml"
             //     git push
             // '''
+            sh "rm -rf demo-devops"
+            sh 'git clone https://github.com/zalehamza/demo-devops.git'
 
             dir('demo-devops') {
                 sh '''
@@ -66,7 +69,7 @@ pipeline {
                      '''
                 sh "git add deployment.yaml"
                 sh "git commit -m Update deployment.yaml"
-                sh "git push"
+                sh 'git push https://${GITHUB_TOKEN}@github.com/username/demo-devops.git'
             }
 
 
@@ -85,3 +88,7 @@ pipeline {
         }
     }
 }
+
+
+
+
