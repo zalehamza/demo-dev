@@ -5,7 +5,7 @@ pipeline {
         // Remplacez ces variables par vos informations
         DOCKERHUB_USERNAME = 'zalehamza'
         DOCKERHUB_PASSWORD = 'leil@2023'
-        IMAGE_NAME = 'demo-app'
+        IMAGE_NAME = 'demo-app:latest'
         IMAGE_TAG = "1.0.0"
     }
 
@@ -36,8 +36,14 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    // Remplacer le placeholder par le vrai nom de l'image
-                   sh 'sed -i "s|IMAGE_NAME_PLACEHOLDER|'${DOCKERHUB_USERNAME}'/'${IMAGE_NAME}':'${IMAGE_TAG}'|g" deployment.yaml'
+
+                    // Déploiement de l'application sur Kubernetes
+                    sh '''
+                        sed -i "s|IMAGE_NAME_PLACEHOLDER|IMAGE_NAME|g" my-k8s-deployment.yaml
+                        kubectl apply -f my-k8s-deployment.yaml
+                    '''
+                    
+                                        // Remplacer le placeholder par le vrai nom de l'image
                 }
             }
         }
