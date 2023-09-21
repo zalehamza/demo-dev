@@ -59,6 +59,11 @@ pipeline {
                          sed -i "s|IMAGE_NAME_PLACEHOLDER|IMAGE_NAME|g" deployment.yaml
                         
                      '''
+                sh '''
+                        git config --global user.email "zalehamza18@gmail.com"
+                        git config --global user.name "zalehamza"
+                        
+                     '''
                 sh "git add deployment.yaml"
                 sh "git commit -m Update deployment.yaml"
                 sh "git push"
