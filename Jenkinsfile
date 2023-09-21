@@ -37,22 +37,30 @@ pipeline {
             steps {
                 script {
 
-                    sh "rm -rf demo-devops"
-                    sh 'git clone https://github.com/zalehamza/demo-devops.git'
-                    sh "cd demo-devops"
-                    sh "ls demo-devops"
+            //         sh "rm -rf demo-devops"
+            //         sh 'git clone https://github.com/zalehamza/demo-devops.git'
+            //         sh "cd demo-devops"
+            //         sh "ls demo-devops"
 
-                    // Déploiement de l'application sur Kubernetes
-                    sh '''
-                        sed -i "s|IMAGE_NAME_PLACEHOLDER|IMAGE_NAME|g" demo-devops/deployment.yaml
+            //         // Déploiement de l'application sur Kubernetes
+            //         sh '''
+            //             sed -i "s|IMAGE_NAME_PLACEHOLDER|IMAGE_NAME|g" demo-devops/deployment.yaml
                         
-                    '''
+            //         '''
 
-                              sh '''
-                git add deployment.yaml
-                git commit -m "Update image to" 
-                git push
-            '''
+            //                   sh '''
+            //     git add demo-devops/deployment.yaml
+            //     git commit -m "Update deployment.yaml"
+            //     git push
+            // '''
+
+            dir('demo-devops') {
+                sh 'sed -i "s|IMAGE_NAME_PLACEHOLDER|'${IMAGE_NAME}'|g" deployment.yaml'
+                sh "git add deployment.yaml"
+                sh "git commit -m 'Update deployment.yaml"
+                sh "git push"
+            }
+
 
           
                     
