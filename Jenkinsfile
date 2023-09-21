@@ -37,12 +37,19 @@ pipeline {
             steps {
                 script {
 
+                    sh 'git clone https://github.com/zalehamza/demo-devops.git'
+
                     // Déploiement de l'application sur Kubernetes
                     sh '''
-                        git clone https://github.com/zalehamza/demo-devops.git
                         sed -i "s|IMAGE_NAME_PLACEHOLDER|IMAGE_NAME|g" deployment.yaml
                         
                     '''
+
+                    sh '''
+                git add path/to/deployment.yaml
+                git commit -m "Update image to" 
+                git push
+            '''
                     
                                         // Remplacer le placeholder par le vrai nom de l'image
                 }
