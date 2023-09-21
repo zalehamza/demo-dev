@@ -5,7 +5,7 @@ pipeline {
         // Remplacez ces variables par vos informations
         DOCKERHUB_USERNAME = 'zalehamza'
         DOCKERHUB_PASSWORD = 'leil@2023'
-        IMAGE_NAME = 'demo-app:latest'
+        IMAGE_NAME = 'demo-app:1.0.0'
         IMAGE_TAG = "1.0.0"
         GITHUB_TOKEN = credentials('zalehamza')
     }
@@ -68,7 +68,7 @@ pipeline {
                         
                      '''
                 sh "git add deployment.yaml"
-                sh "git commit -m Update deployment.yaml"
+                sh "git commit -m Upde deployment.yaml"
                 sh 'git push https://${GITHUB_TOKEN}@github.com/zalehamza/demo-devops.git'
             }
 
