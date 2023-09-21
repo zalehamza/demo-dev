@@ -44,7 +44,7 @@ pipeline {
 
                     // Déploiement de l'application sur Kubernetes
                     sh '''
-                        sed -i "s|IMAGE_NAME_PLACEHOLDER|IMAGE_NAME|g" deployment.yaml
+                        sed -i "s|IMAGE_NAME_PLACEHOLDER|IMAGE_NAME|g" demo-devops/deployment.yaml
                         
                     '''
 
