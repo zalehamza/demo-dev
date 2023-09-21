@@ -37,7 +37,7 @@ pipeline {
             steps {
                 script {
                     // Remplacer le placeholder par le vrai nom de l'image
-                    sh "sed -i "s|IMAGE_NAME_PLACEHOLDER|$DOCKERHUB_USERNAME/$IMAGE_NAME:$IMAGE_TAG|g" deployment.yaml"
+                   sh 'sed -i "s|IMAGE_NAME_PLACEHOLDER|'${DOCKERHUB_USERNAME}'/'${IMAGE_NAME}':'${IMAGE_TAG}'|g" deployment.yaml'
                 }
             }
         }
