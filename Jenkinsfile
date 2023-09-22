@@ -56,7 +56,7 @@ pipeline {
 
                 def changes = sh(script: "git diff deployment.yaml", returnStatus: true)
             
-                if (changes == 0) { 
+                if (changes == true) { 
                     sh """
                         git add deployment.yaml
                         git commit -m "Update deployment.yaml"
