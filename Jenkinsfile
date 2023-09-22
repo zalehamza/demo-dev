@@ -56,14 +56,16 @@ pipeline {
 
                 def changes = sh(script: "git diff deployment.yaml", returnStatus: true)
             
-                if (changes == false) { 
-                    sh """
+                if (changes == 0) { 
+                    echo "No changes in deployment.yaml detected. Skipping commit and push."
+                   
+                } else {
+                     sh """
                         git add deployment.yaml
                         git commit -m "Update deployment.yaml"
                         git push https://${GITHUB_TOKEN}@github.com/zalehamza/demo-devops.git
                     """
-                } else {
-                    echo "No changes in deployment.yaml detected. Skipping commit and push."
+                    
                 }
                 
             }
