@@ -6,7 +6,7 @@ pipeline {
         DOCKERHUB_USERNAME = 'zalehamza'
         DOCKERHUB_PASSWORD = 'leil@2023'
         IMAGE_NAME = 'demo-app'
-        IMAGE_TAG = "1.0.0"
+        IMAGE_TAG = "3.0.0"
         GITHUB_TOKEN = credentials('zalehamza')
     }
 
