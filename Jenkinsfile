@@ -38,22 +38,6 @@ pipeline {
             steps {
                 script {
 
-            //         sh "rm -rf demo-devops"
-            //         sh 'git clone https://github.com/zalehamza/demo-devops.git'
-            //         sh "cd demo-devops"
-            //         sh "ls demo-devops"
-
-            //         // Déploiement de l'application sur Kubernetes
-            //         sh '''
-            //             sed -i "s|IMAGE_NAME_PLACEHOLDER|IMAGE_NAME|g" demo-devops/deployment.yaml
-                        
-            //         '''
-
-            //                   sh '''
-                // git add demo-devops/deployment.yaml
-            //     git commit -m "Update deployment.yaml"
-            //     git push
-            // '''
             sh "rm -rf demo-devops"
             sh 'git clone https://github.com/zalehamza/demo-devops.git'
 
@@ -71,6 +55,7 @@ pipeline {
                     git commit -m "Update deployment.yaml"
                     git push https://${GITHUB_TOKEN}@github.com/zalehamza/demo-devops.git
                 """
+                // sh "rm -rf demo-devops"
             }
 
 
@@ -78,6 +63,13 @@ pipeline {
                     
                                         // Remplacer le placeholder par le vrai nom de l'image
                 }
+            }
+        }
+
+        stage("Cleanup Workspace") {
+            steps {
+                cleanWs()
+                sh "ls -la"
             }
         }
     }
