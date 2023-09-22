@@ -78,12 +78,12 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            // Déconnexion de Docker Hub après la fin du pipeline
-            sh 'docker logout'
-        }
-    }
+    // post {
+    //     always {
+    //         // Déconnexion de Docker Hub après la fin du pipeline
+    //         sh 'docker logout'
+    //     }
+    // }
 }
 
 
