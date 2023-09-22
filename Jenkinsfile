@@ -5,7 +5,7 @@ pipeline {
         // Remplacez ces variables par vos informations
         DOCKERHUB_USERNAME = 'zalehamza'
         DOCKERHUB_PASSWORD = 'leil@2023'
-        IMAGE_NAME = 'demo-app:1.0.0'
+        IMAGE_NAME = 'demo-app'
         IMAGE_TAG = "1.0.0"
         GITHUB_TOKEN = credentials('zalehamza')
     }
@@ -58,33 +58,19 @@ pipeline {
             sh 'git clone https://github.com/zalehamza/demo-devops.git'
 
             dir('demo-devops') {
-                sh '''
-                         sed -i "s|IMAGE_NAME_PLACEHOLDER|IMAGENAME|g" deployment.yaml
-                        
-                     '''
+               
                 sh '''
                         git config --global user.email "zalehamza18@gmail.com"
                         git config --global user.name "zalehamza"
                         
                      '''
 
-                def changes = sh(script: "git diff deployment.yaml", returnStatus: true)
-            
-                if (changes == 0) { // Si des modifications sont détectées
-                    sh """
-                        git add $DEPLOYMENT_FILE
-                        git commit -m "Update image to $IMAGE_NAME"
-                        git push
-                    """
-                } else {
-                    echo "No changes in deployment.yaml detected. Skipping commit and push."
-                }
-
-
-
-                sh "git add deployment.yaml"
-                sh "git commit -m Upde deployment.yaml"
-                sh 'git push https://${GITHUB_TOKEN}@github.com/zalehamza/demo-devops.git'
+                sh """
+                    sed -i 's/${IMAGE_NAME}.*/${IMAGE_NAME}:${IMAGE_TAG}/g' deployment.yaml
+                    git add deployment.yaml
+                    git commit -m "Update deployment.yaml"
+                    git push https://${GITHUB_TOKEN}@github.com/zalehamza/demo-devops.git
+                """
             }
 
 
