@@ -6,7 +6,7 @@ pipeline {
         DOCKERHUB_USERNAME = 'zalehamza'
         DOCKERHUB_PASSWORD = 'leil@2023'
         IMAGE_NAME = 'demo-app'
-        IMAGE_TAG = "6.0.0"
+        IMAGE_TAG = "7.0.0"
         GITHUB_TOKEN = credentials('zalehamza')
     }
 
@@ -56,7 +56,7 @@ pipeline {
 
                 def changes = sh(script: "git diff deployment.yaml", returnStatus: true)
             
-                if (changes == true) { 
+                if (changes == false) { 
                     sh """
                         git add deployment.yaml
                         git commit -m "Update deployment.yaml"
